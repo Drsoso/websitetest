@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-s+&@-=e#t6o11!oqf0xz7ul7)a2o^72^j#h39uhqc8wor*z$jb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app','.now.sh']
 
 
 # Application definition
@@ -127,11 +127,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
-STATICFILES_DIRS = (
-    os.path.join(SITE_ROOT,'docsvoicetest/static'),
-)
-
-STATIC_ROOT = os.path.join(SITE_ROOT,'static')
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
