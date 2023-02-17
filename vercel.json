@@ -9,5 +9,6 @@
             "src": "/(.*)",
             "dest": "docsvoicetest/wsgi.py"
         }
-    ]
+    ],
+    "output": "public"
 }
