@@ -7,9 +7,7 @@ from validate_email import validate_email
 from django.contrib import messages
 from django.core.mail import EmailMessage
 
-from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeError
-from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
-from django.contrib.sites.shortcuts import get_current_site
+
 
 # Create your views here.
 
