@@ -14,6 +14,7 @@
                 </div>
                 <form action="{% url 'register' %}" method="post">
                     {% csrf_token %}
+                    {% include 'partials/messages.html' %}
 
                         <div class="mb-3">
                             <input type="text" name="username" placeholder="username" id="usernamefield" class="form-control form-control-sm"  value="{{responce.username}}"/>
