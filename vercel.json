@@ -16,8 +16,8 @@
     ],
     "routes": [
       {
-        "src": "/docsvoicetest/static/(.*)",
-        "dest": "/docsvoicetest/static/$1"
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
       },
       {
         "src": "/(.*)",
