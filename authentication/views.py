@@ -7,6 +7,13 @@ from validate_email import validate_email
 from django.contrib import messages
 from django.core.mail import EmailMessage
 
+from django.urls import reverse
+
+from django.utils.encoding import force_bytes,force_str,DjangoUnicodeDecodeError
+from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
+from django.contrib.sites.shortcuts import get_current_site
+from .utils import tokengenerator
+
 
 
 # Create your views here.
@@ -37,9 +44,13 @@ class RegistrationView(View):
                 user.set_password(password)
                 user.is_active=False
                 user.save()
+                uidb64=urlsafe_base64_encode(force_bytes(user.pk))
                 domain=get_current_site(request).domain
+                link=reverse('activate',kwargs={'uidb64':uidb64,'token':tokengenerator.make_token(user)})
+                activate_link=f'http//{domain}{link}'
                 email_subject="activate your account"
-                email_body='test message'
+
+                email_body=f'Hi {username} \n please activate your account \n {activate_link}'
                 email = EmailMessage(
                     email_subject,
                     email_body,
@@ -58,6 +69,10 @@ class RegistrationView(View):
 class VerificationView(View):
     def get(self,request,uidb64,token):
         return redirect('login')
+        
+class LoginView(View):
+    def get(self,request):
+        return render(request,'authentication/login.html')
 
 
 
@@ -96,11 +111,3 @@ class EmailValidationView(View):
 
 
 
-
-
-x=1
-for y in range(7):
-    print(f'Day {x} Adam ba9i ma7wani')
-    x+=1
-
-print("9awd an7wih")
